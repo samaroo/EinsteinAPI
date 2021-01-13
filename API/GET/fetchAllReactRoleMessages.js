@@ -2,15 +2,19 @@ const Server = require('../../DB/serverModel');
 
 const fetchAllReactRoleMessages = async (req, res) => {
     let {serverID} = req.params;
-    let {token} = req.body;
+    //let {token} = req.body;
 
     //if the request isn't coming from Einstein, forbid it
-    if(token !== process.env.TOKEN){
-        //403 status is forbidden
-        res.status(403);
-        res.send("Forbidden: You are not Einstein");
-        return;
-    }
+    // if(token !== process.env.TOKEN){
+
+    //     console.log(token);
+    //     console.log(req.body);
+
+    //     //403 status is forbidden
+    //     res.status(403);
+    //     res.send("Forbidden: You are not Einstein");
+    //     return;
+    // }
 
     const result = await Server.findOne({serverID}).exec();
 

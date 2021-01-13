@@ -1,19 +1,36 @@
 const mongoose = require("mongoose");
+require('mongoose-long')(mongoose);
+const {Types: {Long}} = mongoose;
+
+const roleToEmojiMapSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        required: true
+    },
+    emoji: {
+        type: String,
+        required: true
+    }
+});
 
 const reactRoleMessagesSchema = new mongoose.Schema({
     channelID: {
-        type: Number,
+        type: Long,
         required: true
     },
     messageID: {
-        type: Number,
+        type: Long,
+        required: true
+    },
+    roleToEmojiMap: {
+        type: [roleToEmojiMapSchema],
         required: true
     }
 });
 
 const serverSchema = new mongoose.Schema({
     serverID: {
-        type: Number,
+        type: Long,
         required: true
     },
     reactRoleMessages: {
